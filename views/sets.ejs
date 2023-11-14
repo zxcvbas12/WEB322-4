@@ -1,0 +1,44 @@
+<!-- sets.ejs -->
+<%- include('partials/navbar', { page: '/lego/sets' }) %>
+
+<div class="hero">
+  <h1>Collection</h1>
+  <!-- Add hard-coded links for filtering -->
+  <div>
+    <a href="/lego/sets">All</a>
+    <a href="/lego/sets?theme=technic">Technic</a>
+    <!-- Add other theme links as needed -->
+  </div>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Image</th>
+      <th>Name</th>
+      <th>Theme</th>
+      <th>Year</th>
+      <th>Num Parts</th>
+      <th>Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Iterate over Lego sets and display data in table rows -->
+    <% sets.forEach(set => { %>
+    <tr>
+      <td><img src="<%= set.img_url %>" alt="<%= set.name %>" /></td>
+      <td><%= set.name %></td>
+      <td>
+        <a href="/lego/sets?theme=<%= set.theme %>" class="button"
+          ><%= set.theme %></a
+        >
+      </td>
+      <td><%= set.year %></td>
+      <td><%= set.num_parts %></td>
+      <td>
+        <a href="/lego/sets/<%= set.set_num %>" class="button">Details</a>
+      </td>
+    </tr>
+    <% }); %>
+  </tbody>
+</table>
